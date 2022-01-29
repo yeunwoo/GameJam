@@ -230,15 +230,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4432092245300271412, guid: ff4f313a5544b40c09295109ffc5f0b7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4432092245300271412, guid: ff4f313a5544b40c09295109ffc5f0b7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4432092245300271412, guid: ff4f313a5544b40c09295109ffc5f0b7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4432092245300271412, guid: ff4f313a5544b40c09295109ffc5f0b7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -312,6 +312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnglePrefab: {fileID: 4133659176752456297, guid: bf2ee652428334571b00b44461886c36, type: 3}
+  movingStage: {fileID: 1593546745}
+--- !u!4 &1593546745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3113712826932394229, guid: c1a2779ffe9f9f91bb5b49a45ee6d5f4, type: 3}
+  m_PrefabInstance: {fileID: 3113712827499400548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901942889
 GameObject:
   m_ObjectHideFlags: 0
