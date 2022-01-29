@@ -89,6 +89,6 @@ public class PizzaMan : MonoBehaviour {
     public void Jump(float speed) {
         jumpSpeed = speed * jumpSpeedMultiplier;
         isJump = true;
-        asource.PlayOneShot(jumpSFX);
+        asource.PlayOneShot(jumpSFX, 0.5f);
     }
 }
