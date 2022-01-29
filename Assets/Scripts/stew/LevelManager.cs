@@ -40,7 +40,6 @@ public class LevelManager : MonoBehaviour
         endMarker.localPosition = Vector3.right * roadLength * 10;
         float poleIntervals = ((roadLength * 10) / trackLengthInSeconds) * (60.0f/(float)trackBPM); // scroll speed (units/s) * # of s / beat
         for (int i = 0; i < (int) ((trackLengthInSeconds/60.0f) * trackBPM); i++){
-            Debug.Log(i);
             Instantiate(treeToSpawn, new Vector3(i * poleIntervals, 2, 4), Quaternion.identity, dynamicChildren);
         }
     }
