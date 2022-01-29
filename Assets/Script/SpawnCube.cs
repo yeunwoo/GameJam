@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnCube : MonoBehaviour
 {
      [SerializeField] GameObject AnglePrefab = null;
+     [SerializeField] Transform movingStage;
         private Camera _cam = null;
     // Start is called before the first frame update
     void Start()
@@ -21,11 +22,15 @@ public class SpawnCube : MonoBehaviour
     void SpawnAtMousePos(){
         if(Input.GetMouseButtonDown(0)){
             // // Mouse.current.position.ReadValue()
-            Vector3 position = _cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));
+            Vector3 position = _cam.ScreenToWorldPoint(new Vector3(
+                Input.mousePosition.x, 
+                Input.mousePosition.y, 
+                Mathf.Abs(_cam.transform.position.z)
+            ));
             // Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             // RaycastHit hit;
             // if(Physics.Raycast(ray, out hit)){
-            Instantiate(AnglePrefab, position, Quaternion.identity);
+            Instantiate(AnglePrefab, position, Quaternion.identity, movingStage);
                 
             // }
 
