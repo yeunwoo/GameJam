@@ -7,6 +7,9 @@ public class SpawnCube : MonoBehaviour
      [SerializeField] GameObject AnglePrefab = null;
      [SerializeField] Transform movingStage;
         private Camera _cam = null;
+    
+    [SerializeField] private int maxCubes = 3;
+    private List<GameObject> cubes = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +33,15 @@ public class SpawnCube : MonoBehaviour
             // Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             // RaycastHit hit;
             // if(Physics.Raycast(ray, out hit)){
-            Instantiate(AnglePrefab, position, Quaternion.identity, movingStage);
-                
+            if (cubes.Count < maxCubes){
+                var newCube = Instantiate(AnglePrefab, position, Quaternion.identity, movingStage) as GameObject;
+                cubes.Add(newCube);
+            } else {
+                cubes[0].transform.position = position;
+                cubes.Add(cubes[0]);
+                cubes.RemoveAt(0);
+            }
+            
             // }
 
         }

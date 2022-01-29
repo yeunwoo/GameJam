@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator Beat(float beatTime) {
         while (true){
             this.beatKeeper.Beat();
-            float jumpSpeed = Random.Range(0.5f, 1.5f);
+            float jumpSpeed = Random.Range(2, 4);
             this.pizzaMan.Jump(jumpSpeed);
             yield return new WaitForSeconds(beatTime);
         }

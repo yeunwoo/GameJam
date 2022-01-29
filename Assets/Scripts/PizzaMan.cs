@@ -8,29 +8,35 @@ public class PizzaMan : MonoBehaviour {
     [SerializeField] private float jumpSpeedMultiplier = 3f;
     [SerializeField] private float fallMultiplier = 2.5f;
 
-    [SerializeField] private float zMin = -8f;
-    [SerializeField] private float zMax = -1f;
+    [SerializeField] private float zMin = -4f;
+    [SerializeField] private float zMax = -4f;
+
+
+    [SerializeField] private float xMin = -3f;
+    [SerializeField] private float xMax = 13f;
 
     private bool isJump = false;
 
     private Rigidbody rigidbody;
     private float jumpSpeed = 0f;
 
-    private float horizontalSpeed = 0f;
+    private float zSpeed = 0f;
+    private float xSpeed = 0f;
 
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    private IEnumerator Start() {
-        horizontalSpeed = speed;
+    private void Start() {
+        zSpeed = speed;
+        xSpeed = speed;
 
-        while (true) {
-            yield return new WaitForSeconds(Random.Range(1, 5));
-            float jumpSpeed = Random.Range(2, 6);
-            Jump(jumpSpeed);
-        }
+        // while (true) {
+        //     yield return new WaitForSeconds(Random.Range(1, 5));
+        //     float jumpSpeed = Random.Range(2, 6);
+        //     Jump(jumpSpeed);
+        // }
 
     }
 
@@ -55,14 +61,22 @@ public class PizzaMan : MonoBehaviour {
             verticalSpeed += Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
         }
 
-        if (transform.position.z >= zMax) {
-            horizontalSpeed = -speed;
-        } else if (transform.position.z <= zMin) {
-            horizontalSpeed = speed;
+        float z_pos = transform.position.z;
+        if (z_pos >= zMax) {
+            zSpeed = -speed;
+        } else if (z_pos <= zMin) {
+            zSpeed = speed;
         }
 
-        rigidbody.velocity = new Vector3(0, verticalSpeed, horizontalSpeed);
+        float x_pos = transform.position.x;
+        if (x_pos >= xMax) {
+            xSpeed = -speed;
+        } else if (x_pos <= xMin) {
+            xSpeed = speed;
+        }
 
+        // rigidbody.velocity = new Vector3(0, verticalSpeed, horizontalSpeed);
+        rigidbody.velocity = new Vector3(xSpeed, verticalSpeed, zSpeed);
 
 
     }
