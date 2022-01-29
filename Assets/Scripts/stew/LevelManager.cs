@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour
     }
 
     void Update() {
-        if (pizzaMan.transform.position.y < -3) {
+        if (pizzaMan.transform.position.y < -30) {
             Debug.Log("LOSE LOSE LOSE LOSE!");
             dynamicChildren.GetComponent<Scrolling>().Stop();
         }
@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator Beat(float beatTime) {
         while (true){
             this.beatKeeper.Beat();
-            float jumpSpeed = Random.Range(2, 4);
+            float jumpSpeed = Random.Range(3, 4);
             this.pizzaMan.Jump(jumpSpeed);
             yield return new WaitForSeconds(beatTime);
         }

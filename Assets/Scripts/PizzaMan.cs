@@ -15,6 +15,8 @@ public class PizzaMan : MonoBehaviour {
     [SerializeField] private float xMin = -3f;
     [SerializeField] private float xMax = 13f;
 
+    [SerializeField] private AudioClip jumpSFX;
+
     private bool isJump = false;
 
     private Rigidbody rigidbody;
@@ -87,6 +89,6 @@ public class PizzaMan : MonoBehaviour {
     public void Jump(float speed) {
         jumpSpeed = speed * jumpSpeedMultiplier;
         isJump = true;
-        asource.Play();
+        asource.PlayOneShot(jumpSFX);
     }
 }

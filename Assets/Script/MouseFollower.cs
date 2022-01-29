@@ -24,7 +24,7 @@ public class MouseFollower : MonoBehaviour
             new Vector3(
                 Input.mousePosition.x, 
                 Input.mousePosition.y, 
-                Mathf.Abs(_cam.transform.position.z)
+                Mathf.Abs(_cam.transform.position.z)-5
             )
         );
         
