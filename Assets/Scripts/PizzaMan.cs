@@ -23,9 +23,12 @@ public class PizzaMan : MonoBehaviour {
     private float zSpeed = 0f;
     private float xSpeed = 0f;
 
+    private AudioSource asource;
+
 
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
+        asource = GetComponent<AudioSource>();
     }
 
     private void Start() {
@@ -84,5 +87,6 @@ public class PizzaMan : MonoBehaviour {
     public void Jump(float speed) {
         jumpSpeed = speed * jumpSpeedMultiplier;
         isJump = true;
+        asource.Play();
     }
 }

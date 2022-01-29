@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -62,6 +63,10 @@ public class LevelManager : MonoBehaviour
         if (pizzaMan.transform.position.y < -3) {
             Debug.Log("LOSE LOSE LOSE LOSE!");
             dynamicChildren.GetComponent<Scrolling>().Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
