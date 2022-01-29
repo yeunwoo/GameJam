@@ -29,6 +29,14 @@ public class LevelManager : MonoBehaviour
     private float trackLengthInSeconds;
     [SerializeField]
     private int trackBPM;
+    [SerializeField]
+    private int everyNthBeat = 2; // e.g. if 4, then will jump every 4th beat.
+
+    [Space(5)]
+    [Header("Pizza and Co")]
+    [SerializeField]
+    private PizzaMan pizzaMan;
+
 
     void Awake()
     {
@@ -40,17 +48,21 @@ public class LevelManager : MonoBehaviour
         road.localScale = new Vector3(roadLength, 1, 1);
         road.localPosition = Vector3.right * roadLength * 5;
         endMarker.localPosition = Vector3.right * roadLength * 10;
-        float poleIntervals = ((roadLength * 10) / trackLengthInSeconds) * (60.0f/(float)trackBPM); // scroll speed (units/s) * # of s / beat
-        for (int i = 0; i < (int) ((trackLengthInSeconds/60.0f) * trackBPM); i++){
+
+        float secondsPerBeat = 60.0f/(float)trackBPM;
+        float poleIntervals = ((roadLength * 10) / trackLengthInSeconds) * secondsPerBeat * everyNthBeat; // scroll speed (units/s) * # of s / beat
+        for (int i = 0; i < everyNthBeat * (int) ((trackLengthInSeconds/60.0f) * trackBPM); i++){
             Instantiate(treeToSpawn, new Vector3(i * poleIntervals, 2, 4), Quaternion.identity, dynamicChildren);
         }
 
-        StartCoroutine(Beat(60.0f/(float)trackBPM));
+        StartCoroutine(Beat(secondsPerBeat * everyNthBeat));
     }
 
     private IEnumerator Beat(float beatTime) {
         while (true){
             this.beatKeeper.Beat();
+            float jumpSpeed = Random.Range(0.5f, 1.5f);
+            this.pizzaMan.Jump(jumpSpeed);
             yield return new WaitForSeconds(beatTime);
         }
     }
