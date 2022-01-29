@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject treeToSpawn;
+    [SerializeField]
+    private BeatKeeper beatKeeper;
 
     [Space(5)]
     [Header("Children")]
@@ -41,6 +43,15 @@ public class LevelManager : MonoBehaviour
         float poleIntervals = ((roadLength * 10) / trackLengthInSeconds) * (60.0f/(float)trackBPM); // scroll speed (units/s) * # of s / beat
         for (int i = 0; i < (int) ((trackLengthInSeconds/60.0f) * trackBPM); i++){
             Instantiate(treeToSpawn, new Vector3(i * poleIntervals, 2, 4), Quaternion.identity, dynamicChildren);
+        }
+
+        StartCoroutine(Beat(60.0f/(float)trackBPM));
+    }
+
+    private IEnumerator Beat(float beatTime) {
+        while (true){
+            this.beatKeeper.Beat();
+            yield return new WaitForSeconds(beatTime);
         }
     }
 
