@@ -45,9 +45,9 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        road.localScale = new Vector3(roadLength, 1, 1);
-        road.localPosition = Vector3.right * roadLength * 5;
-        endMarker.localPosition = Vector3.right * roadLength * 10;
+        road.localScale = new Vector3(2, 1, 1); //new Vector3(roadLength, 1, 1);
+        road.localPosition = Vector3.right * 10; //Vector3.right * roadLength * 5;
+        endMarker.localPosition = Vector3.right * 20; //Vector3.right * roadLength * 10;
 
         float secondsPerBeat = 60.0f/(float)trackBPM;
         float poleIntervals = ((roadLength * 10) / trackLengthInSeconds) * secondsPerBeat * everyNthBeat; // scroll speed (units/s) * # of s / beat
@@ -56,6 +56,13 @@ public class LevelManager : MonoBehaviour
         }
 
         StartCoroutine(Beat(secondsPerBeat * everyNthBeat));
+    }
+
+    void Update() {
+        if (pizzaMan.transform.position.y < -3) {
+            Debug.Log("LOSE LOSE LOSE LOSE!");
+            dynamicChildren.GetComponent<Scrolling>().Stop();
+        }
     }
 
     private IEnumerator Beat(float beatTime) {

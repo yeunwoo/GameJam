@@ -17,6 +17,11 @@ public class Scrolling : MonoBehaviour
         this.progress = 0;
     }
 
+    public void Stop()
+    {
+        isInitialized = false;
+    }
+
     void Update()
     {
         if (isInitialized && progress < 1.0f){
