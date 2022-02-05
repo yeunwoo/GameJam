@@ -21,7 +21,6 @@ public class Window : MonoBehaviour {
                 Animator anim = hit.transform.GetComponentInParent<Animator>();
                 if (anim) {
                     anim.SetTrigger("Next");
-
                 }
 
             }
